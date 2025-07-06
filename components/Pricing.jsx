@@ -1,4 +1,7 @@
+"use client"
+
 import React from "react";
+import { motion } from "framer-motion";
 
 const plans = [
   {
@@ -40,20 +43,36 @@ const Pricing = () => {
   return (
     <section id="pricing" className="bg-gray-50 py-20 px-6">
       <div className="max-w-6xl mx-auto text-center">
-        <h2 className="text-3xl md:text-4xl font-bold text-sky-800 mb-6">
+        <motion.h2
+          className="text-3xl md:text-4xl font-bold text-sky-800 mb-6"
+          initial={{ opacity: 0, y: -30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+        >
           Choose Your Plan
-        </h2>
-        <p className="text-lg text-gray-600 mb-12 max-w-2xl mx-auto">
+        </motion.h2>
+        <motion.p
+          className="text-lg text-gray-600 mb-12 max-w-2xl mx-auto"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2, duration: 0.6 }}
+          viewport={{ once: true }}
+        >
           Whether you need one camera or a full property setup, we’ve got a plan that works for you.
-        </p>
+        </motion.p>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
           {plans.map((plan, idx) => (
-            <div
+            <motion.div
               key={idx}
               className={`w-full h-auto flex flex-col items-start justify-start border p-8 rounded-2xl shadow-sm ${
                 plan.highlight ? "bg-white border-black" : "bg-white"
               }`}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 + idx * 0.1, duration: 0.5 }}
+              viewport={{ once: true }}
             >
               <h3 className="text-xl font-bold text-gray-900 mb-2">{plan.title}</h3>
               <p className="text-3xl font-extrabold text-black mb-4">{plan.price}</p>
@@ -68,7 +87,7 @@ const Pricing = () => {
               >
                 Buy Now
               </a>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

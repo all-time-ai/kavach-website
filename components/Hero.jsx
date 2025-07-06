@@ -1,11 +1,19 @@
+"use client"
+
 import React from "react";
+import { motion } from "framer-motion";
 
 const Hero = () => {
   return (
-    <section className="w-full  pt-28 pb-16">
+    <section className="w-full pt-28 pb-16">
       <div className="max-w-7xl mx-auto px-6 flex flex-col-reverse md:flex-row items-center justify-between">
         {/* Text Content */}
-        <div className="md:w-1/2 text-center md:text-left">
+        <motion.div
+          className="md:w-1/2 text-center md:text-left"
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8 }}
+        >
           <h1 className="text-4xl md:text-5xl font-bold text-sky-900 leading-tight">
             AI Camera That <span className="text-sky-700">Detects</span> Thieves 🚨
           </h1>
@@ -28,16 +36,21 @@ const Hero = () => {
               Watch Demo
             </a>
           </div>
-        </div>
+        </motion.div>
 
         {/* Product Image */}
-        <div className="md:w-1/2 mb-10 md:mb-0">
+        <motion.div
+          className="md:w-1/2 mb-10 md:mb-0"
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+        >
           <img
             src="/hero-section-image.jpg"
             alt="AI Security Camera"
             className="w-full max-w-md mx-auto rounded-md shadow-md"
           />
-        </div>
+        </motion.div>
       </div>
     </section>
   );

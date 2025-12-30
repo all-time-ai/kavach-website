@@ -1,0 +1,14 @@
+# Build output
+.next
+build
+dist
+
+# Dependencies
+node_modules
+
+# VCS
+.git
+
+# Env files
+.env
+.env.local

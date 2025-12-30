@@ -21,7 +21,7 @@ export default function Home() {
       <Features />
       <IndustrySolutions />
       <Demo />
-      <Pricing />
+      {/* <Pricing /> */}
       <ComparisonSection />
       <Testimonials />
       <CTA />

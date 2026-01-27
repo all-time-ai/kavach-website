@@ -1,55 +1,23 @@
-# ------------------------------
-# 1️⃣ Base image
-# ------------------------------
-FROM node:20-alpine AS base
+# Use Node.js LTS
+FROM node:22-slim
+
+# Set working directory
 WORKDIR /app
 
-# ------------------------------
-# 2️⃣ Install dependencies
-# ------------------------------
-FROM base AS deps
+# Copy package files first (better caching)
+COPY package*.json ./
 
-# Install libc6-compat for Alpine (required by some packages)
-RUN apk add --no-cache libc6-compat
+# Install dependencies
+RUN npm install
 
-COPY package.json package-lock.json* ./
-RUN npm ci
-
-# ------------------------------
-# 3️⃣ Build the Next.js app
-# ------------------------------
-FROM base AS builder
-
-COPY --from=deps /app/node_modules ./node_modules
+# Copy rest of the app
 COPY . .
 
-# Disable telemetry during build
-ENV NEXT_TELEMETRY_DISABLED=1
-
+# Build the Next.js app
 RUN npm run build
 
-# ------------------------------
-# 4️⃣ Production image
-# ------------------------------
-FROM base AS runner
-
-ENV NODE_ENV=production
-ENV NEXT_TELEMETRY_DISABLED=1
-
-# Create non-root user
-RUN addgroup --system --gid 1001 nodejs \
-  && adduser --system --uid 1001 nextjs
-
-WORKDIR /app
-
-# Copy only necessary files
-COPY --from=builder /app/public ./public
-COPY --from=builder /app/.next ./.next
-COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/package.json ./package.json
-
-USER nextjs
-
+# Expose Next.js default port
 EXPOSE 3000
 
+# Start the app
 CMD ["npm", "start"]

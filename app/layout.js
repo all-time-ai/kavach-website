@@ -12,7 +12,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Kavach",
+  title: "AllTimeAI - Kavach Cam",
   description: "AI Kavach website: monitor your property with AI.",
 };
 

@@ -29,12 +29,12 @@ const Hero = () => {
             >
               Buy Now
             </a>
-            <a
+            {/* <a
               href="#demo"
               className="text-black border border-sky-800 px-6 py-3 rounded-full text-sm font-semibold hover:bg-sky-100"
             >
               Watch Demo
-            </a>
+            </a> */}
           </div>
         </motion.div>
 

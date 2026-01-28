@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -18,7 +19,16 @@ const Navbar = () => {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6 }}
         >
-          Kavach Cam
+          <div className="flex items-center gap-2">
+            <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center font-bold text-white">
+              <Image alt='A' src="/logo/logo-small.png" className='rounded-lg' width={30} height={30} />
+            </div>
+            <span className="text-xl font-bold tracking-tighter text-sky-900 uppercase">
+              AllTimeAI
+            </span>
+            <span className='h-8 flex items-start justify-start text-[12px] font-semibold text-red-800' >TM</span>
+            Kavach Cam
+          </div>
         </motion.div>
 
         {/* Desktop Nav Links */}
@@ -30,8 +40,6 @@ const Navbar = () => {
         >
           <a href="#features" className="hover:text-sky-950 transition">Features</a>
           <a href="#how-it-works" className="hover:text-sky-950 transition">How It Works</a>
-          <a href="#pricing" className="hover:text-sky-950 transition">Pricing</a>
-          <a href="#testimonials" className="hover:text-sky-950 transition">Testimonials</a>
         </motion.div>
 
         {/* CTA Button */}
@@ -69,8 +77,6 @@ const Navbar = () => {
           >
             <a href="#features" className="block hover:text-sky-950" onClick={toggleMenu}>Features</a>
             <a href="#how-it-works" className="block hover:text-sky-950" onClick={toggleMenu}>How It Works</a>
-            <a href="#pricing" className="block hover:text-sky-950" onClick={toggleMenu}>Pricing</a>
-            <a href="#testimonials" className="block hover:text-sky-950" onClick={toggleMenu}>Testimonials</a>
             <a
               href="#buy"
               className="block bg-sky-700 text-white text-center px-4 py-2 rounded-full hover:bg-sky-800 transition"

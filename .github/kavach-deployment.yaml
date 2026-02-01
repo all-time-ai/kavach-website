@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kavach-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kavach
+  template:
+    metadata:
+      labels:
+        app: kavach
+    spec:
+      containers:
+      - name: kavach
+        image: alltimeai/website:kavach
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 3000
+      imagePullSecrets:
+      - name: dockerhub-secret

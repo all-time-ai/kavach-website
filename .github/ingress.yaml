@@ -1,0 +1,35 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: websites-ingress
+  annotations:
+    kubernetes.io/ingress.class: "gce"
+    kubernetes.io/ingress.global-static-ip-name: "website-static-ip"
+    networking.gke.io/managed-certificates: "alltimeai-cert"
+    kubernetes.io/ingress.allow-http: "false" 
+spec:
+  tls:
+  - hosts:
+    - alltimeai.com
+    - kavach.alltimeai.com
+  rules:
+  - host: alltimeai.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: alltimeai-service
+            port:
+              number: 80 
+  - host: kavach.alltimeai.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: kavach-service
+            port:
+              number: 80

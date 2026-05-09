@@ -38,7 +38,7 @@ const Demo = () => {
                     <iframe
                         width="100%"
                         height="100%"
-                        src="https://www.youtube.com/watch?v=eaDMckYP6Sg"
+                        src="https://www.youtube.com/embed/eaDMckYP6Sg"
                         title="Rakshak Cam Demo"
                         frameBorder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

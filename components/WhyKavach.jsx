@@ -47,7 +47,7 @@ const WhyKavach = () => {
           transition={{ delay: 0.2, duration: 0.6 }}
           viewport={{ once: true }}
         >
-          Most cameras only record what already happened. Kavach Cam detects danger early and <strong>prevents it</strong> — using real-time AI, sound alerts, and smart detection.
+          Most cameras only record what already happened. Rakshak Cam detects danger early and <strong>prevents it</strong> — using real-time AI, sound alerts, and smart detection.
         </motion.p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">

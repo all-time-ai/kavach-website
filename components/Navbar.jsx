@@ -27,7 +27,7 @@ const Navbar = () => {
               AllTimeAI
             </span>
             <span className='h-8 flex items-start justify-start text-[12px] font-semibold text-sky-900' >TM</span>
-            Kavach Cam
+            Rakshak Cam
           </div>
         </motion.div>
 

@@ -41,7 +41,7 @@ const Testimonials = () => {
           transition={{ delay: 0.2, duration: 0.6 }}
           viewport={{ once: true }}
         >
-          Join thousands of homeowners who trust Kavach Cam to protect their property.
+          Join thousands of homeowners who trust Rakshak Cam to protect their property.
         </motion.p>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

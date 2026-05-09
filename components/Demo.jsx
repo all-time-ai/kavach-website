@@ -15,7 +15,7 @@ const Demo = () => {
                     transition={{ duration: 0.6 }}
                     viewport={{ once: true }}
                 >
-                    Watch Kavach Cam in Action
+                    Watch Rakshak Cam in Action
                 </motion.h2>
 
                 <motion.p
@@ -38,8 +38,8 @@ const Demo = () => {
                     <iframe
                         width="100%"
                         height="100%"
-                        src="https://www.youtube.com/embed/dBh26Io5_cw"
-                        title="Kavach Cam Demo"
+                        src="https://www.youtube.com/watch?v=eaDMckYP6Sg"
+                        title="Rakshak Cam Demo"
                         frameBorder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowFullScreen

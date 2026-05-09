@@ -31,7 +31,7 @@ const IndustrySolutions = () => {
                         Tailored Intelligence for Every Premise
                     </h2>
                     <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-                        Generic cameras record crime. Kavach AI understands your environment to prevent it.
+                        Generic cameras record crime. Rakshak AI understands your environment to prevent it.
                     </p>
                 </div>
 

@@ -38,7 +38,7 @@ const HowItWorks = () => {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          How Kavach Cam Works
+          How Rakshak Cam Works
         </motion.h2>
         <motion.p
           className="text-gray-600 text-lg mb-12 max-w-3xl mx-auto"

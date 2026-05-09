@@ -33,7 +33,7 @@ const ComparisonSection = () => {
         <section className="py-12 md:py-20 bg-white">
             <div className="max-w-6xl mx-auto px-4">
                 <div className="text-center mb-10 md:mb-16">
-                    <span className="text-blue-600 font-bold tracking-widest uppercase text-xs md:text-sm">The Kavach Edge</span>
+                    <span className="text-blue-600 font-bold tracking-widest uppercase text-xs md:text-sm">The Rakshak Edge</span>
                     <h2 className="text-2xl md:text-4xl font-bold text-slate-900 mt-2">
                         Why Standard CCTV Is No Longer Enough
                     </h2>
@@ -63,7 +63,7 @@ const ComparisonSection = () => {
                                     <CheckCircle2 className="w-5 h-5 text-green-600 shrink-0 mt-0.5" />
                                     <div>
                                         <div className="flex items-center gap-1">
-                                            <p className="text-[10px] uppercase tracking-wider font-bold text-blue-600">Kavach AI Cam</p>
+                                            <p className="text-[10px] uppercase tracking-wider font-bold text-blue-600">Rakshak AI Cam</p>
                                             <Zap className="w-3 h-3 fill-yellow-400 text-yellow-400" />
                                         </div>
                                         <p className="text-sm font-semibold text-slate-900">{item.new}</p>
@@ -83,7 +83,7 @@ const ComparisonSection = () => {
                                 <th className="p-6 text-lg font-semibold w-1/3 text-center">Traditional Cameras</th>
                                 <th className="p-6 text-lg font-semibold w-1/3 bg-blue-600">
                                     <div className="flex items-center justify-center gap-2">
-                                        <Zap className="w-5 h-5 fill-yellow-400 text-yellow-400" /> Kavach AI Cam
+                                        <Zap className="w-5 h-5 fill-yellow-400 text-yellow-400" /> Rakshak AI Cam
                                     </div>
                                 </th>
                             </tr>

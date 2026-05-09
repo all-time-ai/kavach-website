@@ -9,7 +9,7 @@ const Footer = () => {
 
                 {/* Copyright */}
                 <div className="text-lg font-semibold">
-                    © 2025 Kavach Cam
+                    © 2025 Rakshak Cam
                 </div>
 
                 {/* Navigation Links */}
@@ -69,7 +69,7 @@ const Footer = () => {
 
                     {/* Support Email */}
                     <span className="text-sm text-gray-400">
-                        support@alltimeai.kavach.com
+                        tech@alltimeai.com
                     </span>
                 </div>
             </div>

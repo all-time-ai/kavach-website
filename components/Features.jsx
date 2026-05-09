@@ -58,7 +58,7 @@ const Features = () => {
           transition={{ delay: 0.2, duration: 0.6 }}
           viewport={{ once: true }}
         >
-          Kavach Cam offers cutting-edge features that go beyond traditional cameras.
+          Rakshak Cam offers cutting-edge features that go beyond traditional cameras.
         </motion.p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">

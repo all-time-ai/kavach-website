@@ -12,8 +12,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "AllTimeAI - Kavach Cam",
-  description: "AI Kavach website: monitor your property with AI.",
+  title: "AllTimeAI - Rakshak Cam",
+  description: "AI Rakshak website: monitor your property with AI.",
 };
 
 export default function RootLayout({ children }) {

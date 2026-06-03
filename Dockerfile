@@ -1,6 +1,12 @@
 # Use Node.js LTS
 FROM node:22-slim
 
+# =========================================================================
+# 1. COPY THE AWS LAMBDA WEB ADAPTER LAYER
+# This translates Lambda events directly into standard HTTP port traffic
+# =========================================================================
+COPY --from=public.ecr.aws/awsguru/aws-lambda-adapter:0.8.4 /lambda-adapter /opt/extensions/lambda-adapter
+
 # Set working directory
 WORKDIR /app
 

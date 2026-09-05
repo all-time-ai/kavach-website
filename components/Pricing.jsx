@@ -38,49 +38,53 @@ const plans = [
 
 const Pricing = () => {
   return (
-    <section id="pricing" className="bg-[#05070B] py-20 px-6">
+    <section id="pricing" className="bg-[#05070B] py-24 px-6">
       <div className="mx-auto max-w-6xl">
         <SectionHeading
           title="Choose your plan"
           description="Whether you need one camera or a full property setup, there's a plan that fits."
         />
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:items-center">
           {plans.map((plan, idx) => (
             <motion.div
-              key={idx}
+              key={plan.title}
               initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: idx * 0.06 }}
-              className={`flex h-full flex-col rounded-lg p-8 ${
+              className={
                 plan.highlight
-                  ? "border-2 border-[#FF8A3D] bg-[#0B0F17]"
-                  : "border border-[#1D2636] bg-[#0B0F17]"
-              }`}
+                  ? "relative z-10 flex flex-col rounded-xl border border-[#4FD8FF]/50 bg-[#0B0F17] p-9 shadow-[0_20px_60px_rgba(79,216,255,0.12)] md:-my-4 md:scale-105"
+                  : "flex flex-col rounded-xl border border-[#1D2636] bg-[#0B0F17]/60 p-8"
+              }
             >
               {plan.highlight && (
-                <span className="mb-4 inline-block w-fit rounded-full bg-[#FF8A3D] px-3 py-1 text-xs font-semibold text-[#05070B]">
+                <span className="mb-4 inline-block w-fit rounded-full bg-[#4FD8FF]/10 px-3 py-1 text-xs font-semibold text-[#4FD8FF]">
                   Most popular
                 </span>
               )}
-              <h3 className="text-lg font-semibold text-[#EAF0F7]">{plan.title}</h3>
-              <p className="mt-2 mb-6 text-3xl font-semibold text-[#EAF0F7]">{plan.price}</p>
+              <h3 className={plan.highlight ? "text-lg font-semibold text-[#EAF0F7]" : "text-base font-medium text-[#8792A3]"}>
+                {plan.title}
+              </h3>
+              <p className={plan.highlight ? "mt-2 mb-6 text-4xl font-semibold text-[#EAF0F7]" : "mt-2 mb-6 text-2xl font-semibold text-[#EAF0F7]"}>
+                {plan.price}
+              </p>
               <ul className="mb-8 flex-grow space-y-3">
-                {plan.features.map((feature, i) => (
-                  <li key={i} className="flex items-start gap-2.5 text-sm text-[#8792A3]">
-                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-[#4FD8FF]" />
+                {plan.features.map((feature) => (
+                  <li key={feature} className="flex items-start gap-2.5 text-sm text-[#8792A3]">
+                    <Check className={`mt-0.5 h-4 w-4 shrink-0 ${plan.highlight ? "text-[#4FD8FF]" : "text-[#4FD8FF]/60"}`} />
                     {feature}
                   </li>
                 ))}
               </ul>
               <a
                 href="#buy"
-                className={`inline-flex justify-center rounded-md px-6 py-3 text-sm font-semibold transition-colors ${
+                className={
                   plan.highlight
-                    ? "bg-[#FF8A3D] text-[#05070B] hover:bg-[#FFA05E]"
-                    : "border border-[#1D2636] text-[#EAF0F7] hover:border-[#4FD8FF]/60"
-                }`}
+                    ? "inline-flex justify-center rounded-md bg-[#FF8A3D] px-6 py-3 text-sm font-semibold text-[#05070B] transition-colors hover:bg-[#FFA05E]"
+                    : "inline-flex justify-center rounded-md border border-[#1D2636] px-6 py-3 text-sm font-semibold text-[#EAF0F7] transition-colors hover:border-[#4FD8FF]/60"
+                }
               >
                 Buy Now
               </a>

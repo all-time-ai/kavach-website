@@ -2,16 +2,15 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import Frame from "./Frame";
 import SectionHeading from "./SectionHeading";
 
 const Demo = () => {
   return (
-    <section id="demo" className="bg-[#0B0F17] py-20 px-6 border-y border-[#1D2636]">
+    <section id="demo" className="bg-[#0B0F17] py-24 px-6 border-y border-[#1D2636]">
       <div className="mx-auto max-w-5xl text-center">
         <SectionHeading
           title="Watch Rakshak Cam catch a threat, live"
-          description="Real footage from real customers — from detection to warning in under two seconds."
+          description="Real footage from real customers &mdash; from detection to warning in under two seconds."
         />
 
         <motion.div
@@ -19,20 +18,24 @@ const Demo = () => {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
+          className="relative mx-auto max-w-4xl"
         >
-          <Frame className="mx-auto max-w-4xl" tone="amber">
-            <div className="aspect-video w-full overflow-hidden rounded-sm border border-[#1D2636]">
-              <iframe
-                width="100%"
-                height="100%"
-                src="https://www.youtube.com/embed/eaDMckYP6Sg"
-                title="Rakshak Cam Demo"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              ></iframe>
-            </div>
-          </Frame>
+          <div className="aspect-video w-full overflow-hidden rounded-xl border border-[#1D2636]">
+            <iframe
+              width="100%"
+              height="100%"
+              src="https://www.youtube.com/embed/eaDMckYP6Sg"
+              title="Rakshak Cam Demo"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></iframe>
+          </div>
+
+          <div className="absolute -top-4 left-6 flex items-center gap-2 rounded-full border border-[#1D2636] bg-[#05070B] px-3 py-1.5 text-xs text-[#8792A3] shadow-[0_8px_24px_rgba(0,0,0,0.4)]">
+            <span className="h-1.5 w-1.5 rounded-full bg-[#FF8A3D] animate-pulse" />
+            Unedited &middot; real customer install
+          </div>
         </motion.div>
       </div>
     </section>

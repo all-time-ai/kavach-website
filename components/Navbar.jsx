@@ -31,7 +31,6 @@ const Navbar = () => {
       }`}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-        {/* Logo */}
         <div className="flex items-center gap-2.5">
           <div className="flex h-8 w-8 items-center justify-center rounded-md bg-[#0B0F17] ring-1 ring-[#1D2636]">
             <Image alt="Rakshak Cam" src="/logo/logo-small.png" className="rounded" width={22} height={22} />
@@ -41,7 +40,6 @@ const Navbar = () => {
           </span>
         </div>
 
-        {/* Desktop links */}
         <div className="hidden md:flex items-center gap-8 text-sm text-[#8792A3]">
           {links.map((l) => (
             <a key={l.href} href={l.href} className="transition-colors hover:text-[#EAF0F7]">
@@ -50,15 +48,22 @@ const Navbar = () => {
           ))}
         </div>
 
-        {/* CTA */}
-        <a
-          href="#buy"
-          className="hidden md:inline-flex items-center rounded-md bg-[#FF8A3D] px-4 py-2 text-sm font-semibold text-[#05070B] transition-colors hover:bg-[#FFA05E]"
-        >
-          Buy Now
-        </a>
+        <div className="hidden md:flex items-center gap-5">
+          <div className="flex items-center gap-1.5 text-xs text-[#8792A3]">
+            <span className="relative flex h-1.5 w-1.5">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#4FD8FF] opacity-75" />
+              <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[#4FD8FF]" />
+            </span>
+            All systems active
+          </div>
+          <a
+            href="#buy"
+            className="inline-flex items-center rounded-md bg-[#FF8A3D] px-4 py-2 text-sm font-semibold text-[#05070B] transition-colors hover:bg-[#FFA05E]"
+          >
+            Buy Now
+          </a>
+        </div>
 
-        {/* Mobile toggle */}
         <button
           onClick={() => setIsOpen((v) => !v)}
           className="md:hidden text-[#EAF0F7]"

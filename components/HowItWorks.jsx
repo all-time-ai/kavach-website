@@ -1,68 +1,61 @@
-"use client"
+"use client";
 
 import React from "react";
 import { Camera, Smartphone, ScanFace, AlarmCheck } from "lucide-react";
 import { motion } from "framer-motion";
+import SectionHeading from "./SectionHeading";
 
 const steps = [
   {
-    icon: <Camera size={32} className="text-black" />,
-    title: "Mount the Camera",
-    desc: "Place it near entry points — setup takes 5 minutes.",
+    icon: <Camera size={22} />,
+    title: "Mount the camera",
+    desc: "Place it near an entry point. Setup takes about five minutes.",
   },
   {
-    icon: <Smartphone size={32} className="text-black" />,
-    title: "Connect via App",
-    desc: "Easily link to Wi-Fi and configure alerts with our app.",
+    icon: <Smartphone size={22} />,
+    title: "Connect via the app",
+    desc: "Link it to Wi-Fi and set up alerts from your phone.",
   },
   {
-    icon: <ScanFace size={32} className="text-black" />,
-    title: "AI Starts Monitoring",
-    desc: "Smart detection differentiates humans, pets, and motion.",
+    icon: <ScanFace size={22} />,
+    title: "AI starts monitoring",
+    desc: "It learns to tell people, pets, and passing motion apart.",
   },
   {
-    icon: <AlarmCheck size={32} className="text-black" />,
-    title: "Sound + Alert Triggered",
-    desc: "Camera plays sound & notifies you instantly.",
+    icon: <AlarmCheck size={22} />,
+    title: "Sound and alert trigger",
+    desc: "A threat is detected, a warning plays, and your phone is notified.",
   },
 ];
 
 const HowItWorks = () => {
   return (
-    <section id="how-it-works" className="bg-gray-50 py-20 px-6">
-      <div className="max-w-6xl mx-auto text-center">
-        <motion.h2
-          className="text-3xl md:text-4xl font-bold text-sky-800 mb-6"
-          initial={{ opacity: 0, y: -30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-        >
-          How Rakshak Cam Works
-        </motion.h2>
-        <motion.p
-          className="text-gray-600 text-lg mb-12 max-w-3xl mx-auto"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.6 }}
-          viewport={{ once: true }}
-        >
-          Just install, connect, and let the AI handle the rest. Your property is protected 24/7.
-        </motion.p>
+    <section id="how-it-works" className="bg-[#05070B] py-20 px-6">
+      <div className="mx-auto max-w-6xl">
+        <SectionHeading
+          title="From box to protected in four steps"
+          description="Install once, then let the AI handle monitoring around the clock."
+        />
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+        <div className="relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-6">
+          {/* Connecting line, desktop only */}
+          <div className="pointer-events-none absolute top-6 left-0 right-0 hidden h-px bg-[#1D2636] lg:block" />
+
           {steps.map((step, idx) => (
             <motion.div
               key={idx}
-              className="flex flex-col items-center text-center"
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 + idx * 0.1, duration: 0.5 }}
               viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: idx * 0.08 }}
+              className="relative flex flex-col items-start text-left"
             >
-              <div className="mb-4 bg-white p-4 rounded-full shadow">{step.icon}</div>
-              <h3 className="text-lg font-semibold text-sky-800">{`${idx + 1}. ${step.title}`}</h3>
-              <p className="text-sm text-gray-600 mt-2">{step.desc}</p>
+              <div className="relative z-10 mb-5 flex h-12 w-12 items-center justify-center rounded-full border border-[#1D2636] bg-[#0B0F17] text-[#4FD8FF]">
+                {step.icon}
+              </div>
+              <span className="text-xs font-medium text-[#8792A3]">Step {idx + 1}</span>
+              <h3 className="mt-1 text-base font-semibold text-[#EAF0F7]">{step.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-[#8792A3]">{step.desc}</p>
             </motion.div>
           ))}
         </div>

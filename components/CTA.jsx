@@ -1,22 +1,22 @@
-import React from 'react'
-import { ShieldAlert } from 'lucide-react';
+import React from "react";
+import { ShieldAlert } from "lucide-react";
 
 const CTA = () => {
-    return (
-        <div className="mt-10 p-6 bg-blue-50 rounded-xl flex items-center justify-around flex-wrap gap-4 border border-blue-100">
-            <div className="flex items-center gap-4">
-                <div className="p-3 bg-blue-600 rounded-full text-white">
-                    <ShieldAlert className="w-6 h-6" />
-                </div>
-                <p className="text-slate-700 font-medium max-w-md">
-                    Don't wait for a security breach to upgrade. Secure your assets with the brain of AI today.
-                </p>
-            </div>
-            <button className="bg-[#0070ad] text-white px-10 py-4 rounded-lg font-bold hover:bg-[#005a8c] transform hover:-translate-y-1 transition-all shadow-md cursor-pointer">
-                Upgrade My Security
-            </button>
+  return (
+    <div className="mt-12 flex flex-wrap items-center justify-between gap-6 rounded-lg border border-[#1D2636] bg-[#0B0F17] p-6">
+      <div className="flex items-center gap-4">
+        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-md bg-[#FF8A3D]/10 text-[#FF8A3D]">
+          <ShieldAlert className="w-5 h-5" />
         </div>
-    )
-}
+        <p className="max-w-md text-[#EAF0F7]">
+          Don't wait for a security breach to upgrade. Put AI on watch today.
+        </p>
+      </div>
+      <button className="rounded-md bg-[#FF8A3D] px-7 py-3 text-sm font-semibold text-[#05070B] transition-colors hover:bg-[#FFA05E]">
+        Upgrade My Security
+      </button>
+    </div>
+  );
+};
 
-export default CTA
+export default CTA;

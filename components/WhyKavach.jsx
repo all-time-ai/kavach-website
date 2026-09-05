@@ -1,68 +1,58 @@
-"use client"
+"use client";
 
 import React from "react";
 import { ShieldAlert, Volume2, BellRing, Zap } from "lucide-react";
 import { motion } from "framer-motion";
+import SectionHeading from "./SectionHeading";
 
-const features = [
+const points = [
   {
-    icon: <ShieldAlert size={32} className="text-blue-600" />,
-    title: "Smart Motion Detection",
-    desc: "AI distinguishes between humans, pets, and random motion.",
+    icon: <ShieldAlert size={22} className="text-[#4FD8FF]" />,
+    title: "Tells people from pets",
+    desc: "AI distinguishes humans from pets and passing motion, so it only acts on real threats.",
   },
   {
-    icon: <Volume2 size={32} className="text-cyan-600" />,
-    title: "Loud Sound Alarm",
-    desc: "Plays a siren or custom voice warning when a threat is detected.",
+    icon: <Volume2 size={22} className="text-[#4FD8FF]" />,
+    title: "Sounds a warning",
+    desc: "Plays a siren or a custom voice message the moment it detects a threat.",
   },
   {
-    icon: <BellRing size={32} className="text-sky-600" />,
-    title: "Instant Alerts",
-    desc: "Get notified instantly on your phone with live feed access.",
+    icon: <BellRing size={22} className="text-[#4FD8FF]" />,
+    title: "Alerts you instantly",
+    desc: "Sends a phone notification with live feed access, wherever you are.",
   },
   {
-    icon: <Zap size={32} className="text-indigo-600" />,
-    title: "Prevents Theft",
-    desc: "Scares intruders before they act. Not just passive recording.",
+    icon: <Zap size={22} className="text-[#4FD8FF]" />,
+    title: "Acts before it's too late",
+    desc: "Intervenes while the threat is still outside — not after the footage is already recorded.",
   },
 ];
 
 const WhyKavach = () => {
   return (
-    <section id="features" className="bg-sky-50 py-20 px-6">
-      <div className="max-w-6xl mx-auto text-center">
-        <motion.h2
-          className="text-3xl md:text-4xl font-bold text-sky-900 mb-6"
-          initial={{ opacity: 0, y: -30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-        >
-          Traditional Cameras Just Record. Ours Takes Action.
-        </motion.h2>
-        <motion.p
-          className="text-sky-800 text-lg mb-12 max-w-3xl mx-auto"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.6 }}
-          viewport={{ once: true }}
-        >
-          Most cameras only record what already happened. Rakshak Cam detects danger early and <strong>prevents it</strong> — using real-time AI, sound alerts, and smart detection.
-        </motion.p>
+    <section id="why-it-works" className="bg-[#05070B] py-20 px-6">
+      <div className="mx-auto max-w-6xl">
+        <SectionHeading
+          align="left"
+          title="Most cameras only remember what happened. This one changes what happens."
+          description="Rakshak Cam is built to intervene while a threat is still outside — using on-device AI, sound, and instant alerts."
+        />
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
-          {features.map((feature, idx) => (
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-px overflow-hidden rounded-lg border border-[#1D2636] bg-[#1D2636] lg:grid-cols-4">
+          {points.map((p, idx) => (
             <motion.div
               key={idx}
-              className="flex flex-col items-center text-center bg-white p-6 rounded-xl shadow hover:shadow-md transition"
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 + idx * 0.1, duration: 0.5 }}
               viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: idx * 0.06 }}
+              className="bg-[#0B0F17] p-6"
             >
-              <div className="mb-4">{feature.icon}</div>
-              <h3 className="text-lg font-semibold text-gray-800">{feature.title}</h3>
-              <p className="text-sm text-gray-600 mt-2">{feature.desc}</p>
+              <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-md border border-[#1D2636] bg-[#05070B]">
+                {p.icon}
+              </div>
+              <h3 className="text-base font-semibold text-[#EAF0F7]">{p.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-[#8792A3]">{p.desc}</p>
             </motion.div>
           ))}
         </div>

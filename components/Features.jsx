@@ -1,83 +1,67 @@
-"use client"
+"use client";
 
 import React from "react";
 import { Eye, Cloud, ShieldCheck, Mic, Moon, Cpu } from "lucide-react";
 import { motion } from "framer-motion";
+import SectionHeading from "./SectionHeading";
 
 const features = [
   {
-    icon: <Eye size={28} className="text-sky-600" />,
-    title: "Night Vision HD",
-    desc: "See everything clearly, even in total darkness.",
+    icon: <Eye size={22} className="text-[#4FD8FF]" />,
+    title: "Night vision HD",
+    desc: "Full clarity after dark, when most break-ins happen.",
   },
   {
-    icon: <ShieldCheck size={28} className="text-emerald-600" />,
-    title: "AI Intruder Detection",
-    desc: "Smart AI detects human motion and ignores pets.",
+    icon: <ShieldCheck size={22} className="text-[#4FD8FF]" />,
+    title: "AI intruder detection",
+    desc: "Recognizes human motion and ignores pets automatically.",
   },
   {
-    icon: <Mic size={28} className="text-rose-500" />,
-    title: "Custom Voice Warnings",
-    desc: "Play pre-recorded or custom warnings automatically.",
+    icon: <Mic size={22} className="text-[#4FD8FF]" />,
+    title: "Custom voice warnings",
+    desc: "Play a pre-recorded or custom message the moment it detects someone.",
   },
   {
-    icon: <Cpu size={28} className="text-indigo-600" />,
-    title: "Real-Time Mobile Alerts",
-    desc: "Instant notifications and live feed access on your phone.",
+    icon: <Cpu size={22} className="text-[#4FD8FF]" />,
+    title: "Real-time mobile alerts",
+    desc: "Get notified instantly, with live feed access from anywhere.",
   },
   {
-    icon: <Cloud size={28} className="text-purple-600" />,
-    title: "Cloud & Local Storage",
-    desc: "Save recordings securely online or offline.",
+    icon: <Cloud size={22} className="text-[#4FD8FF]" />,
+    title: "Cloud and local storage",
+    desc: "Save recordings securely online, or keep them on-device.",
   },
   {
-    icon: <Moon size={28} className="text-yellow-600" />,
-    title: "Silent Mode",
-    desc: "Control sound triggers for specific times or events.",
+    icon: <Moon size={22} className="text-[#4FD8FF]" />,
+    title: "Silent mode",
+    desc: "Schedule when sound triggers fire, and when they stay quiet.",
   },
 ];
 
 const Features = () => {
   return (
-    <section id="features" className="bg-sky-50 py-20 px-6">
-      <div className="max-w-6xl mx-auto text-center">
-        <motion.h2
-          className="text-3xl md:text-4xl font-bold text-sky-900 mb-6"
-          initial={{ opacity: 0, y: -30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-        >
-          Powerful Features Built for Real Security
-        </motion.h2>
+    <section id="features" className="bg-[#0B0F17] py-20 px-6 border-y border-[#1D2636]">
+      <div className="mx-auto max-w-6xl">
+        <SectionHeading
+          title="Everything a break-in deterrent needs"
+          description="Built for real security, not just a recording that gets reviewed after the fact."
+        />
 
-        <motion.p
-          className="text-lg text-sky-800 mb-12 max-w-3xl mx-auto"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.6 }}
-          viewport={{ once: true }}
-        >
-          Rakshak Cam offers cutting-edge features that go beyond traditional cameras.
-        </motion.p>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {features.map((feature, idx) => (
             <motion.div
               key={idx}
-              className="bg-white p-6 rounded-xl shadow hover:shadow-md transition"
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 + idx * 0.1, duration: 0.5 }}
               viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: idx * 0.05 }}
+              className="group rounded-lg border border-[#1D2636] bg-[#05070B] p-6 transition-colors hover:border-[#4FD8FF]/40"
             >
-              <div className="w-full flex items-center justify-center mb-4">
+              <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-md bg-[#0B0F17] ring-1 ring-[#1D2636]">
                 {feature.icon}
               </div>
-              <h3 className="text-lg font-semibold text-gray-800">
-                {feature.title}
-              </h3>
-              <p className="text-sm text-gray-600 mt-2">{feature.desc}</p>
+              <h3 className="text-base font-semibold text-[#EAF0F7]">{feature.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-[#8792A3]">{feature.desc}</p>
             </motion.div>
           ))}
         </div>

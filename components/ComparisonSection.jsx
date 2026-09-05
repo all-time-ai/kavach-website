@@ -1,174 +1,82 @@
-import React from 'react';
-import { XCircle, CheckCircle2, ShieldAlert, Zap } from 'lucide-react';
+import React from "react";
+import { Minus, Check, Zap } from "lucide-react";
+import SectionHeading from "./SectionHeading";
+
+const comparisons = [
+  {
+    feature: "Threat detection",
+    old: "Records the crime as it happens. No instant alerts.",
+    new: "Detects suspicious loitering and alerts you before entry.",
+  },
+  {
+    feature: "False alarms",
+    old: "Triggered by shadows, rain, or stray animals.",
+    new: "Human-only detection. Ignores pets and environmental noise.",
+  },
+  {
+    feature: "Search efficiency",
+    old: "Manually scrubbing through hours of footage.",
+    new: "Instant search for \u2018person in red shirt\u2019 or \u2018unrecognized face\u2019.",
+  },
+  {
+    feature: "Active deterrence",
+    old: "Passive recording. Intruders aren't stopped.",
+    new: "Automated voice warnings and strobe lights to scare off intruders.",
+  },
+];
 
 const ComparisonSection = () => {
-    const comparisons = [
-        {
-            feature: "Threat Detection",
-            old: "Records the crime as it happens. No instant alerts.",
-            new: "Detects suspicious loitering and triggers alerts before entry.",
-            isBest: true
-        },
-        {
-            feature: "False Alarms",
-            old: "Triggered by shadows, rain, or stray animals.",
-            new: "Human-only detection. Ignores pets and environmental noise.",
-            isBest: true
-        },
-        {
-            feature: "Search Efficiency",
-            old: "Manually scrubbing through hours of footage.",
-            new: "Instant search for 'Person in Red Shirt' or 'Unrecognized Face'.",
-            isBest: true
-        },
-        {
-            feature: "Active Deterrence",
-            old: "Passive recording. Intruders aren't stopped.",
-            new: "Automated voice warnings and strobe lights to scare off intruders.",
-            isBest: true
-        }
-    ];
+  return (
+    <section className="bg-[#05070B] py-24 px-6">
+      <div className="mx-auto max-w-5xl">
+        <SectionHeading
+          eyebrow="Rakshak vs. traditional CCTV"
+          title="A recording is evidence. A warning is prevention."
+        />
 
-    return (
-        <section className="py-12 md:py-20 bg-white">
-            <div className="max-w-6xl mx-auto px-4">
-                <div className="text-center mb-10 md:mb-16">
-                    <span className="text-blue-600 font-bold tracking-widest uppercase text-xs md:text-sm">The Rakshak Edge</span>
-                    <h2 className="text-2xl md:text-4xl font-bold text-slate-900 mt-2">
-                        Why Standard CCTV Is No Longer Enough
-                    </h2>
-                </div>
-
-                {/* --- MOBILE VIEW: Stacked Cards (Visible only on small screens) --- */}
-                <div className="block md:hidden space-y-6">
-                    {comparisons.map((item, index) => (
-                        <div key={index} className="border border-slate-200 rounded-xl overflow-hidden shadow-sm">
-                            <div className="bg-slate-900 text-white p-4 font-bold text-center">
-                                {item.feature}
-                            </div>
-                            <div className="p-5 space-y-4 bg-white">
-                                {/* Traditional Side */}
-                                <div className="flex items-start gap-3 opacity-60">
-                                    <XCircle className="w-5 h-5 text-red-500 shrink-0 mt-0.5" />
-                                    <div>
-                                        <p className="text-[10px] uppercase tracking-wider font-bold text-slate-400">Traditional CCTV</p>
-                                        <p className="text-sm text-slate-600">{item.old}</p>
-                                    </div>
-                                </div>
-
-                                <div className="border-t border-slate-100 my-2"></div>
-
-                                {/* Kavach Side */}
-                                <div className="flex items-start gap-3">
-                                    <CheckCircle2 className="w-5 h-5 text-green-600 shrink-0 mt-0.5" />
-                                    <div>
-                                        <div className="flex items-center gap-1">
-                                            <p className="text-[10px] uppercase tracking-wider font-bold text-blue-600">Rakshak AI Cam</p>
-                                            <Zap className="w-3 h-3 fill-yellow-400 text-yellow-400" />
-                                        </div>
-                                        <p className="text-sm font-semibold text-slate-900">{item.new}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-
-                {/* --- DESKTOP VIEW: Full Table (Hidden on mobile) --- */}
-                <div className="hidden md:block overflow-hidden rounded-2xl border border-slate-200 shadow-xl">
-                    <table className="w-full text-left border-collapse">
-                        <thead>
-                            <tr className="bg-slate-900 text-white">
-                                <th className="p-6 text-lg font-semibold w-1/4">Capability</th>
-                                <th className="p-6 text-lg font-semibold w-1/3 text-center">Traditional Cameras</th>
-                                <th className="p-6 text-lg font-semibold w-1/3 bg-blue-600">
-                                    <div className="flex items-center justify-center gap-2">
-                                        <Zap className="w-5 h-5 fill-yellow-400 text-yellow-400" /> Rakshak AI Cam
-                                    </div>
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody className="divide-y divide-slate-200">
-                            {comparisons.map((item, index) => (
-                                <tr key={index} className="hover:bg-slate-50 transition-colors">
-                                    <td className="p-6 font-bold text-slate-800 border-r border-slate-100 bg-slate-50/30">
-                                        {item.feature}
-                                    </td>
-                                    <td className="p-6 text-slate-500 bg-white border-r border-slate-100">
-                                        <div className="flex items-start gap-3">
-                                            <XCircle className="w-5 h-5 text-red-400 shrink-0 mt-1" />
-                                            <span className="text-sm leading-relaxed">{item.old}</span>
-                                        </div>
-                                    </td>
-                                    <td className="p-6 text-slate-900 font-medium bg-blue-50/40">
-                                        <div className="flex items-start gap-3">
-                                            <CheckCircle2 className="w-5 h-5 text-green-600 shrink-0 mt-1" />
-                                            <span className="text-sm leading-relaxed">{item.new}</span>
-                                        </div>
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                </div>
+        <div className="overflow-hidden rounded-xl border border-[#1D2636]">
+          {/* header */}
+          <div className="grid grid-cols-[1fr_1fr] sm:grid-cols-[1.1fr_1fr_1fr] bg-[#0B0F17]">
+            <div className="hidden sm:block p-5 text-sm font-medium text-[#8792A3]">Capability</div>
+            <div className="p-5 text-sm font-medium text-[#8792A3] border-l border-[#1D2636]">
+              Traditional cameras
             </div>
-        </section>
+            <div className="relative p-5 text-sm font-semibold text-[#4FD8FF] border-l border-[#1D2636]">
+              <span className="absolute left-0 top-0 h-full w-[2px] bg-[#4FD8FF]" />
+              <span className="inline-flex items-center gap-1.5">
+                <Zap className="h-4 w-4" /> Rakshak Cam
+              </span>
+            </div>
+          </div>
 
-
-
-        // Unresponsive
-        // <section className="py-20 bg-white">
-        //     <div className="max-w-6xl mx-auto px-4">
-        //         <div className="text-center mb-16">
-        //             <span className="text-blue-600 font-bold tracking-widest uppercase text-sm">The Kavach Edge</span>
-        //             <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mt-2">
-        //                 Why Standard CCTV Is No Longer Enough
-        //             </h2>
-        //         </div>
-
-        //         <div className="overflow-hidden rounded-2xl border border-slate-200 shadow-xl">
-        //             <table className="w-full text-left border-collapse">
-        //                 <thead>
-        //                     <tr className="bg-slate-900 text-white">
-        //                         <th className="p-6 text-lg font-semibold">Capability</th>
-        //                         <th className="p-6 text-lg font-semibold">Traditional Cameras</th>
-        //                         <th className="p-6 text-lg font-semibold bg-blue-600 flex items-center gap-2">
-        //                             <Zap className="w-5 h-5 fill-yellow-400 text-yellow-400" /> Kavach AI Cam
-        //                         </th>
-        //                     </tr>
-        //                 </thead>
-        //                 <tbody className="divide-y divide-slate-200">
-        //                     {comparisons.map((item, index) => (
-        //                         <tr key={index} className="hover:bg-slate-50 transition-colors">
-        //                             {/* 1. Feature Name Column */}
-        //                             <td className="p-6 font-bold text-slate-800 border-r border-slate-100">
-        //                                 {item.feature}
-        //                             </td>
-
-        //                             {/* 2. Traditional Camera Column (The "Old" Way) */}
-        //                             <td className="p-6 text-slate-500 bg-white">
-        //                                 <div className="flex items-start gap-3">
-        //                                     <XCircle className="w-5 h-5 text-red-400 shrink-0 mt-1" />
-        //                                     <span className="text-sm leading-relaxed">{item.old}</span>
-        //                                 </div>
-        //                             </td>
-
-        //                             {/* 3. Kavach AI Column (The "New" Way) */}
-        //                             <td className="p-6 text-slate-900 font-medium bg-blue-50/40">
-        //                                 <div className="flex items-start gap-3">
-        //                                     <CheckCircle2 className="w-5 h-5 text-green-600 shrink-0 mt-1" />
-        //                                     <span className="text-sm leading-relaxed">{item.new}</span>
-        //                                 </div>
-        //                             </td>
-        //                         </tr>
-        //                     ))}
-        //                 </tbody>
-        //             </table>
-        //         </div>
-        //     </div>
-        // </section>
-    );
-
+          {comparisons.map((item) => (
+            <div
+              key={item.feature}
+              className="grid grid-cols-[1fr_1fr] sm:grid-cols-[1.1fr_1fr_1fr] border-t border-[#1D2636]"
+            >
+              <div className="hidden sm:flex items-start p-5 text-sm font-medium text-[#EAF0F7] bg-[#0B0F17]/40">
+                {item.feature}
+              </div>
+              <div className="flex items-start gap-3 p-5 border-l border-[#1D2636]">
+                <Minus className="mt-0.5 h-4 w-4 shrink-0 text-[#8792A3]" />
+                <div>
+                  <span className="sm:hidden mb-1 block text-xs font-medium text-[#EAF0F7]">
+                    {item.feature}
+                  </span>
+                  <span className="text-sm leading-relaxed text-[#8792A3]">{item.old}</span>
+                </div>
+              </div>
+              <div className="relative flex items-start gap-3 p-5 border-l border-[#1D2636] bg-[#4FD8FF]/[0.04]">
+                <span className="absolute left-0 top-0 h-full w-[2px] bg-[#4FD8FF]/40" />
+                <Check className="mt-0.5 h-4 w-4 shrink-0 text-[#4FD8FF]" />
+                <span className="text-sm leading-relaxed text-[#EAF0F7]">{item.new}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
 };
 
 export default ComparisonSection;

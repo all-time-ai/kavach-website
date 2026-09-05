@@ -1,89 +1,106 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
+
+const links = [
+  { href: "#features", label: "Features" },
+  { href: "#how-it-works", label: "How It Works" },
+  { href: "#pricing", label: "Pricing" },
+];
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const toggleMenu = () => setIsOpen(!isOpen);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
-    <nav className="w-full fixed top-0 z-50 bg-white shadow-sm">
-      <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-        {/* Logo */}
-        <motion.div
-          className="text-2xl font-bold text-sky-900"
-          initial={{ opacity: 0, x: -30 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6 }}
-        >
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center font-bold text-white">
-              <Image alt='A' src="/logo/logo-small.png" className='rounded-lg' width={30} height={30} />
-            </div>
-            <span className="text-xl font-bold tracking-tighter text-sky-900 uppercase">
-              AllTimeAI
-            </span>
-            <span className='h-8 flex items-start justify-start text-[12px] font-semibold text-sky-900' >TM</span>
-            Rakshak Cam
+    <nav
+      className={`fixed top-0 z-50 w-full border-b transition-colors duration-300 ${
+        scrolled
+          ? "bg-[#05070B]/90 border-[#1D2636] backdrop-blur-md"
+          : "bg-[#05070B]/40 border-transparent backdrop-blur-sm"
+      }`}
+    >
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+        <div className="flex items-center gap-2.5">
+          <div className="flex h-8 w-8 items-center justify-center rounded-md bg-[#0B0F17] ring-1 ring-[#1D2636]">
+            <Image alt="Rakshak Cam" src="/logo/logo-small.png" className="rounded" width={22} height={22} />
           </div>
-        </motion.div>
+          <span className="font-[family-name:var(--font-display)] text-lg font-semibold tracking-tight text-[#EAF0F7]">
+            Rakshak Cam
+          </span>
+        </div>
 
-        {/* Desktop Nav Links */}
-        <motion.div
-          className="hidden md:flex space-x-8 text-sm font-medium text-sky-800"
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.6 }}
-        >
-          <a href="#features" className="hover:text-sky-950 transition">Features</a>
-          <a href="#how-it-works" className="hover:text-sky-950 transition">How It Works</a>
-        </motion.div>
+        <div className="hidden md:flex items-center gap-8 text-sm text-[#8792A3]">
+          {links.map((l) => (
+            <a key={l.href} href={l.href} className="transition-colors hover:text-[#EAF0F7]">
+              {l.label}
+            </a>
+          ))}
+        </div>
 
-        {/* CTA Button */}
-        <motion.div
-          className="hidden md:block"
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4, duration: 0.6 }}
-        >
+        <div className="hidden md:flex items-center gap-5">
+          <div className="flex items-center gap-1.5 text-xs text-[#8792A3]">
+            <span className="relative flex h-1.5 w-1.5">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#4FD8FF] opacity-75" />
+              <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[#4FD8FF]" />
+            </span>
+            All systems active
+          </div>
           <a
             href="#buy"
-            className="bg-sky-700 text-white px-5 py-2 rounded-full text-sm hover:bg-sky-800 transition"
+            className="inline-flex items-center rounded-md bg-[#FF8A3D] px-4 py-2 text-sm font-semibold text-[#05070B] transition-colors hover:bg-[#FFA05E]"
           >
             Buy Now
           </a>
-        </motion.div>
-
-        {/* Hamburger Icon - Mobile */}
-        <div className="md:hidden">
-          <button onClick={toggleMenu} className="text-sky-900 focus:outline-none">
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
         </div>
+
+        <button
+          onClick={() => setIsOpen((v) => !v)}
+          className="md:hidden text-[#EAF0F7]"
+          aria-label={isOpen ? "Close menu" : "Open menu"}
+        >
+          {isOpen ? <X size={22} /> : <Menu size={22} />}
+        </button>
       </div>
 
-      {/* Mobile Menu */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            className="md:hidden bg-sky-100 shadow-lg px-6 py-4 space-y-4 text-sky-800 font-medium"
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3 }}
+            transition={{ duration: 0.25, ease: "easeInOut" }}
+            className="md:hidden overflow-hidden border-t border-[#1D2636] bg-[#05070B]"
           >
-            <a href="#features" className="block hover:text-sky-950" onClick={toggleMenu}>Features</a>
-            <a href="#how-it-works" className="block hover:text-sky-950" onClick={toggleMenu}>How It Works</a>
-            <a
-              href="#buy"
-              className="block bg-sky-700 text-white text-center px-4 py-2 rounded-full hover:bg-sky-800 transition"
-              onClick={toggleMenu}
-            >
-              Buy Now
-            </a>
+            <div className="flex flex-col gap-1 px-6 py-4">
+              {links.map((l) => (
+                <a
+                  key={l.href}
+                  href={l.href}
+                  onClick={() => setIsOpen(false)}
+                  className="py-2 text-sm text-[#8792A3] hover:text-[#EAF0F7]"
+                >
+                  {l.label}
+                </a>
+              ))}
+              <a
+                href="#buy"
+                onClick={() => setIsOpen(false)}
+                className="mt-2 inline-flex justify-center rounded-md bg-[#FF8A3D] px-4 py-2.5 text-sm font-semibold text-[#05070B]"
+              >
+                Buy Now
+              </a>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

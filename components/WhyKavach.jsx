@@ -1,70 +1,79 @@
-"use client"
+"use client";
 
 import React from "react";
-import { ShieldAlert, Volume2, BellRing, Zap } from "lucide-react";
+import { ScanFace, Volume2, BellRing, Zap } from "lucide-react";
 import { motion } from "framer-motion";
 
-const features = [
+const pipeline = [
   {
-    icon: <ShieldAlert size={32} className="text-blue-600" />,
-    title: "Smart Motion Detection",
-    desc: "AI distinguishes between humans, pets, and random motion.",
+    time: "00:00.0",
+    icon: <ScanFace size={18} />,
+    title: "Motion classified",
+    desc: "AI tells a person apart from a pet or a passing shadow.",
   },
   {
-    icon: <Volume2 size={32} className="text-cyan-600" />,
-    title: "Loud Sound Alarm",
-    desc: "Plays a siren or custom voice warning when a threat is detected.",
+    time: "00:00.4",
+    icon: <Volume2 size={18} />,
+    title: "Warning sounds",
+    desc: "A siren or custom voice message plays on the spot.",
   },
   {
-    icon: <BellRing size={32} className="text-sky-600" />,
-    title: "Instant Alerts",
-    desc: "Get notified instantly on your phone with live feed access.",
+    time: "00:01.1",
+    icon: <BellRing size={18} />,
+    title: "You're notified",
+    desc: "Your phone gets a push alert with a live feed link.",
   },
   {
-    icon: <Zap size={32} className="text-indigo-600" />,
-    title: "Prevents Theft",
-    desc: "Scares intruders before they act. Not just passive recording.",
+    time: "00:01.8",
+    icon: <Zap size={18} />,
+    title: "Threat deterred",
+    desc: "Most intruders leave before ever reaching the door.",
   },
 ];
 
 const WhyKavach = () => {
   return (
-    <section id="features" className="bg-sky-50 py-20 px-6">
-      <div className="max-w-6xl mx-auto text-center">
-        <motion.h2
-          className="text-3xl md:text-4xl font-bold text-sky-900 mb-6"
-          initial={{ opacity: 0, y: -30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-        >
-          Traditional Cameras Just Record. Ours Takes Action.
-        </motion.h2>
-        <motion.p
-          className="text-sky-800 text-lg mb-12 max-w-3xl mx-auto"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.6 }}
-          viewport={{ once: true }}
-        >
-          Most cameras only record what already happened. Rakshak Cam detects danger early and <strong>prevents it</strong> — using real-time AI, sound alerts, and smart detection.
-        </motion.p>
+    <section id="why-it-works" className="bg-[#05070B] py-24 px-6">
+      <div className="mx-auto max-w-6xl grid grid-cols-1 lg:grid-cols-[0.85fr_1.15fr] gap-16">
+        {/* Sticky-feeling left column, not centered marketing copy */}
+        <div>
+          <span className="mb-3 block text-sm font-medium text-[#4FD8FF]">
+            What a traditional camera can't do
+          </span>
+          <h2 className="font-[family-name:var(--font-display)] text-3xl md:text-[2.4rem] leading-[1.15] font-semibold text-[#EAF0F7]">
+            From motion to deterrence in under two seconds.
+          </h2>
+          <p className="mt-5 text-[#8792A3] leading-relaxed max-w-sm">
+            This is the actual sequence that runs on-device every time
+            Rakshak Cam sees something worth acting on &mdash; no cloud
+            round-trip, no waiting for someone to review footage later.
+          </p>
+        </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
-          {features.map((feature, idx) => (
-            <motion.div
-              key={idx}
-              className="flex flex-col items-center text-center bg-white p-6 rounded-xl shadow hover:shadow-md transition"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 + idx * 0.1, duration: 0.5 }}
-              viewport={{ once: true }}
-            >
-              <div className="mb-4">{feature.icon}</div>
-              <h3 className="text-lg font-semibold text-gray-800">{feature.title}</h3>
-              <p className="text-sm text-gray-600 mt-2">{feature.desc}</p>
-            </motion.div>
-          ))}
+        {/* Live pipeline / event log */}
+        <div className="relative">
+          <div className="absolute left-[27px] top-2 bottom-2 w-px bg-[#1D2636]" />
+          <div className="space-y-8">
+            {pipeline.map((step, idx) => (
+              <motion.div
+                key={step.time}
+                initial={{ opacity: 0, x: 12 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: idx * 0.1 }}
+                className="relative flex gap-5"
+              >
+                <div className="relative z-10 flex h-14 w-14 shrink-0 items-center justify-center rounded-full border border-[#1D2636] bg-[#0B0F17] text-[#4FD8FF]">
+                  {step.icon}
+                </div>
+                <div className="pt-1">
+                  <span className="font-mono text-xs tabular-nums text-[#FF8A3D]">{step.time}</span>
+                  <h3 className="mt-1 text-base font-semibold text-[#EAF0F7]">{step.title}</h3>
+                  <p className="mt-1 text-sm leading-relaxed text-[#8792A3]">{step.desc}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

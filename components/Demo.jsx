@@ -1,42 +1,35 @@
-"use client";
-
 import React from "react";
-import { motion } from "framer-motion";
+import Reveal from "./Reveal";
 import SectionHeading from "./SectionHeading";
 
 const Demo = () => {
   return (
-    <section id="demo" className="bg-[#0B0F17] py-24 px-6 border-y border-[#1D2636]">
-      <div className="mx-auto max-w-5xl text-center">
+    <section id="demo" className="relative border-t border-line py-24 lg:py-32">
+      <div className="mx-auto max-w-5xl px-6">
         <SectionHeading
+          eyebrow="Demo"
           title="Watch Rakshak Cam catch a threat, live"
-          description="Real footage from real customers &mdash; from detection to warning in under two seconds."
+          description="From detection to warning in under two seconds."
         />
 
-        <motion.div
-          initial={{ opacity: 0, scale: 0.97 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="relative mx-auto max-w-4xl"
-        >
-          <div className="aspect-video w-full overflow-hidden rounded-xl border border-[#1D2636]">
-            <iframe
-              width="100%"
-              height="100%"
-              src="https://www.youtube.com/embed/eaDMckYP6Sg"
-              title="Rakshak Cam Demo"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            ></iframe>
+        <Reveal>
+          <div className="relative">
+            <div
+              className="absolute -inset-4 rounded-[1.75rem] bg-blue/10 blur-3xl"
+              aria-hidden
+            />
+            <div className="relative aspect-video w-full overflow-hidden rounded-2xl border border-line-strong bg-panel shadow-[0_40px_100px_-30px_rgba(79,140,255,0.3)]">
+              <iframe
+                className="absolute inset-0 h-full w-full"
+                src="https://www.youtube.com/embed/eaDMckYP6Sg"
+                title="Rakshak Cam demo"
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            </div>
           </div>
-
-          <div className="absolute -top-4 left-6 flex items-center gap-2 rounded-full border border-[#1D2636] bg-[#05070B] px-3 py-1.5 text-xs text-[#8792A3] shadow-[0_8px_24px_rgba(0,0,0,0.4)]">
-            <span className="h-1.5 w-1.5 rounded-full bg-[#FF8A3D] animate-pulse" />
-            Unedited &middot; real customer install
-          </div>
-        </motion.div>
+        </Reveal>
       </div>
     </section>
   );

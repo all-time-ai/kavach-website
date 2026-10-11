@@ -1,25 +1,27 @@
-import React from "react";
+import Reveal from "./Reveal";
 
 const SectionHeading = ({ eyebrow, title, description, align = "center" }) => {
-  const wrap =
-    align === "left"
-      ? "text-left items-start"
-      : "text-center items-center mx-auto";
-
+  const center = align === "center";
   return (
-    <div className={`flex flex-col ${wrap} max-w-2xl mb-12 md:mb-16`}>
-      {eyebrow && (
-        <span className="mb-3 text-sm font-medium text-[#4FD8FF]">{eyebrow}</span>
-      )}
-      <h2 className="font-[family-name:var(--font-display)] text-3xl md:text-[2.6rem] leading-[1.15] font-semibold text-[#EAF0F7]">
+    <Reveal className={`mb-14 md:mb-16 ${center ? "text-center" : ""}`}>
+      {eyebrow && <p className="eyebrow mb-4">{eyebrow}</p>}
+      <h2
+        className={`text-3xl md:text-5xl font-semibold tracking-[-0.025em] leading-[1.1] text-fade ${
+          center ? "mx-auto max-w-3xl" : "max-w-3xl"
+        }`}
+      >
         {title}
       </h2>
       {description && (
-        <p className="mt-4 text-base md:text-lg text-[#8792A3] leading-relaxed">
+        <p
+          className={`mt-5 text-lg leading-relaxed text-mute ${
+            center ? "mx-auto max-w-2xl" : "max-w-2xl"
+          }`}
+        >
           {description}
         </p>
       )}
-    </div>
+    </Reveal>
   );
 };
 

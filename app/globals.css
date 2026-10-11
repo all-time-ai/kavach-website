@@ -1,1 +1,161 @@
 @import "tailwindcss";
+
+/* Rakshak Cam design tokens: midnight ink, electric blue, signal orange */
+@theme inline {
+  --color-ink: #05070d;
+  --color-ink-2: #0a0e18;
+  --color-panel: #0e1422;
+  --color-line: #1b2438;
+  --color-line-strong: #2a3650;
+  --color-text: #eef2f9;
+  --color-mute: #8c98ad;
+  --color-dim: #5b6679;
+  --color-blue: #4f8cff;
+  --color-sky: #5fd0ff;
+  --color-signal: #ff6a3d;
+  --color-signal-soft: #ff8f6b;
+  --font-sans: var(--font-geist-sans), system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 88px;
+  color-scheme: dark;
+}
+
+body {
+  background: var(--color-ink);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: rgba(79, 140, 255, 0.35);
+}
+
+/* ---------- Reusable pieces ---------- */
+
+.card {
+  position: relative;
+  border: 1px solid var(--color-line);
+  border-radius: 1.1rem;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.01));
+  transition: border-color 0.25s ease, background 0.25s ease;
+}
+
+.card:hover {
+  border-color: var(--color-line-strong);
+}
+
+.text-gradient {
+  background: linear-gradient(100deg, #8ab4ff 0%, #5fd0ff 55%, #9be7ff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-fade {
+  background: linear-gradient(180deg, #fff 35%, rgba(255, 255, 255, 0.6) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 52px 52px;
+  mask-image: radial-gradient(ellipse 75% 65% at 50% 25%, #000 25%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 75% 65% at 50% 25%, #000 25%, transparent 100%);
+}
+
+.glow {
+  filter: blur(110px);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 3rem;
+  padding: 0 1.5rem;
+  border-radius: 0.75rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+  cursor: pointer;
+}
+
+.btn-primary {
+  color: #1a0a04;
+  background: linear-gradient(180deg, #ff875e, #ff6a3d);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.18) inset, 0 12px 36px -12px rgba(255, 106, 61, 0.7);
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.25) inset, 0 16px 44px -10px rgba(255, 106, 61, 0.85);
+}
+
+.btn-secondary {
+  color: var(--color-text);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--color-line-strong);
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.28);
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-sky);
+}
+
+/* ---------- Motion (CSS only, so layout never shifts) ---------- */
+
+@keyframes scan {
+  0% { transform: translateY(-120%); }
+  100% { transform: translateY(420%); }
+}
+
+@keyframes ping-soft {
+  0% { transform: scale(1); opacity: 0.7; }
+  100% { transform: scale(2.6); opacity: 0; }
+}
+
+.animate-scan { animation: scan 5s ease-in-out infinite; }
+.animate-ping-soft { animation: ping-soft 1.8s ease-out infinite; }
+
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  transition-delay: var(--delay, 0ms);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (scripting: none) {
+  .reveal { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .animate-scan, .animate-ping-soft { animation: none; }
+}

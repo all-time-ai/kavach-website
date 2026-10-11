@@ -1,14 +1,16 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
-import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
+import { CONTACT_HREF } from "@/lib/contact";
+
 
 const links = [
+  { href: "#why-it-works", label: "How it protects" },
   { href: "#features", label: "Features" },
-  { href: "#how-it-works", label: "How It Works" },
-  { href: "#pricing", label: "Pricing" },
+  { href: "#solutions", label: "Solutions" },
+  { href: "#demo", label: "Demo" },
 ];
 
 const Navbar = () => {
@@ -16,95 +18,83 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
+    const onScroll = () => setScrolled(window.scrollY > 12);
     onScroll();
-    window.addEventListener("scroll", onScroll);
+    window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   return (
-    <nav
-      className={`fixed top-0 z-50 w-full border-b transition-colors duration-300 ${
-        scrolled
-          ? "bg-[#05070B]/90 border-[#1D2636] backdrop-blur-md"
-          : "bg-[#05070B]/40 border-transparent backdrop-blur-sm"
-      }`}
-    >
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-        <div className="flex items-center gap-2.5">
-          <div className="flex h-8 w-8 items-center justify-center rounded-md bg-[#0B0F17] ring-1 ring-[#1D2636]">
-            <Image alt="Rakshak Cam" src="/logo/logo-small.png" className="rounded" width={22} height={22} />
-          </div>
-          <span className="font-[family-name:var(--font-display)] text-lg font-semibold tracking-tight text-[#EAF0F7]">
-            Rakshak Cam
-          </span>
-        </div>
-
-        <div className="hidden md:flex items-center gap-8 text-sm text-[#8792A3]">
-          {links.map((l) => (
-            <a key={l.href} href={l.href} className="transition-colors hover:text-[#EAF0F7]">
-              {l.label}
-            </a>
-          ))}
-        </div>
-
-        <div className="hidden md:flex items-center gap-5">
-          <div className="flex items-center gap-1.5 text-xs text-[#8792A3]">
-            <span className="relative flex h-1.5 w-1.5">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#4FD8FF] opacity-75" />
-              <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[#4FD8FF]" />
-            </span>
-            All systems active
-          </div>
-          <a
-            href="#buy"
-            className="inline-flex items-center rounded-md bg-[#FF8A3D] px-4 py-2 text-sm font-semibold text-[#05070B] transition-colors hover:bg-[#FFA05E]"
-          >
-            Buy Now
+    <header className="fixed top-0 z-50 w-full px-4 pt-4">
+      <nav
+        aria-label="Primary"
+        className={`mx-auto max-w-6xl rounded-2xl border transition-all duration-300 ${
+          scrolled || isOpen
+            ? "border-line-strong/60 bg-ink-2/85 backdrop-blur-xl shadow-[0_10px_40px_-14px_rgba(0,0,0,0.9)]"
+            : "border-transparent bg-transparent"
+        }`}
+      >
+        <div className="flex h-16 items-center justify-between px-4 md:px-5">
+          <a href="#top" className="flex items-center gap-3" aria-label="Rakshak Cam home">
+            <Image
+              alt=""
+              src="/logo/logo-small.png"
+              width={34}
+              height={34}
+              className="rounded-lg ring-1 ring-line-strong"
+            />
+            <span className="text-[17px] font-semibold tracking-tight">Rakshak Cam</span>
           </a>
+
+          <div className="hidden md:flex items-center gap-1">
+            {links.map((l) => (
+              <a
+                key={l.href}
+                href={l.href}
+                className="rounded-lg px-3.5 py-2 text-sm font-medium text-mute transition-colors hover:bg-white/5 hover:text-text"
+              >
+                {l.label}
+              </a>
+            ))}
+          </div>
+
+          <div className="hidden md:block">
+            <a href={CONTACT_HREF} className="btn btn-primary !min-h-10 !px-5 !text-sm">
+              Get Rakshak Cam
+            </a>
+          </div>
+
+          <button
+            onClick={() => setIsOpen((v) => !v)}
+            className="md:hidden -mr-2 p-2 text-text"
+            aria-label={isOpen ? "Close menu" : "Open menu"}
+            aria-expanded={isOpen}
+          >
+            {isOpen ? <X size={22} /> : <Menu size={22} />}
+          </button>
         </div>
 
-        <button
-          onClick={() => setIsOpen((v) => !v)}
-          className="md:hidden text-[#EAF0F7]"
-          aria-label={isOpen ? "Close menu" : "Open menu"}
-        >
-          {isOpen ? <X size={22} /> : <Menu size={22} />}
-        </button>
-      </div>
-
-      <AnimatePresence>
         {isOpen && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.25, ease: "easeInOut" }}
-            className="md:hidden overflow-hidden border-t border-[#1D2636] bg-[#05070B]"
-          >
-            <div className="flex flex-col gap-1 px-6 py-4">
+          <div className="md:hidden border-t border-line px-4 pb-5 pt-2">
+            <div className="flex flex-col">
               {links.map((l) => (
                 <a
                   key={l.href}
                   href={l.href}
                   onClick={() => setIsOpen(false)}
-                  className="py-2 text-sm text-[#8792A3] hover:text-[#EAF0F7]"
+                  className="py-3 text-base font-medium text-text"
                 >
                   {l.label}
                 </a>
               ))}
-              <a
-                href="#buy"
-                onClick={() => setIsOpen(false)}
-                className="mt-2 inline-flex justify-center rounded-md bg-[#FF8A3D] px-4 py-2.5 text-sm font-semibold text-[#05070B]"
-              >
-                Buy Now
-              </a>
             </div>
-          </motion.div>
+            <a href={CONTACT_HREF} className="btn btn-primary mt-3 w-full">
+              Get Rakshak Cam
+            </a>
+          </div>
         )}
-      </AnimatePresence>
-    </nav>
+      </nav>
+    </header>
   );
 };
 

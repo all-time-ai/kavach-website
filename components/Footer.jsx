@@ -1,6 +1,8 @@
 import React from "react";
+import Image from "next/image";
 import { FaLinkedinIn, FaInstagram, FaYoutube } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
+import { CONTACT_EMAIL, CONTACT_HREF } from "@/lib/contact";
 
 const socials = [
   { href: "https://www.linkedin.com/in/all-time-ai-46a9b53aa/", label: "LinkedIn", Icon: FaLinkedinIn },
@@ -9,36 +11,78 @@ const socials = [
   { href: "https://www.instagram.com/alltimeai_official/", label: "Instagram", Icon: FaInstagram },
 ];
 
+const nav = [
+  { href: "#why-it-works", label: "How it protects" },
+  { href: "#features", label: "Features" },
+  { href: "#solutions", label: "Solutions" },
+  { href: "#demo", label: "Demo" },
+];
+
 const Footer = () => {
   return (
-    <footer className="border-t border-[#1D2636] bg-[#05070B] px-6 py-10 text-[#8792A3]">
-      <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 md:flex-row">
-        <div className="font-[family-name:var(--font-display)] text-base font-semibold text-[#EAF0F7]">
-          © 2025 Rakshak Cam
-        </div>
+    <footer className="border-t border-line bg-ink-2 px-6 pb-8 pt-14">
+      <div className="mx-auto max-w-6xl">
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-[1.4fr_1fr_1fr]">
+          <div>
+            <div className="flex items-center gap-3">
+              <Image
+                alt=""
+                src="/logo/logo-small.png"
+                width={34}
+                height={34}
+                className="rounded-lg ring-1 ring-line-strong"
+              />
+              <span className="text-lg font-semibold tracking-tight">Rakshak Cam</span>
+            </div>
+            <p className="mt-4 max-w-xs text-sm leading-relaxed text-mute">
+              AI security that stops trouble before it starts. A product of AllTimeAI Products and
+              Solutions Private Limited.
+            </p>
+          </div>
 
-        <div className="flex gap-6 text-sm">
-          <a href="#features" className="hover:text-[#EAF0F7]">Features</a>
-          <a href="#pricing" className="hover:text-[#EAF0F7]">Pricing</a>
-          <a href="#testimonials" className="hover:text-[#EAF0F7]">Testimonials</a>
-          <a href="#demo" className="hover:text-[#EAF0F7]">Demo</a>
-        </div>
+          <div>
+            <h4 className="eyebrow !text-dim mb-4">Explore</h4>
+            <ul className="space-y-3 text-sm text-mute">
+              {nav.map((l) => (
+                <li key={l.href}>
+                  <a href={l.href} className="transition-colors hover:text-text">
+                    {l.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-        <div className="flex items-center gap-4">
-          {socials.map(({ href, label, Icon }) => (
-            <a
-              key={label}
-              href={href}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={label}
-              className="transition-colors hover:text-[#EAF0F7]"
-            >
-              <Icon className="text-base" />
+          <div>
+            <h4 className="eyebrow !text-dim mb-4">Contact</h4>
+            <a href={CONTACT_HREF} className="text-sm text-mute transition-colors hover:text-text">
+              {CONTACT_EMAIL}
             </a>
-          ))}
-          <span className="mx-1 h-4 w-px bg-[#1D2636]" />
-          <span className="text-sm">tech@alltimeai.com</span>
+            <div className="mt-5 flex gap-2">
+              {socials.map(({ href, label, Icon }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  className="flex h-10 w-10 items-center justify-center rounded-xl border border-line-strong text-mute transition-colors hover:border-sky/50 hover:bg-sky/10 hover:text-text"
+                >
+                  <Icon className="text-base" />
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t border-line pt-6 text-sm text-dim md:flex-row">
+          <p>
+            &copy; {new Date().getFullYear()} AllTimeAI Products and Solutions Private Limited. All
+            rights reserved.
+          </p>
+          <a href="https://alltimeai.com" className="transition-colors hover:text-text">
+            alltimeai.com
+          </a>
         </div>
       </div>
     </footer>

@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { Store, Warehouse, Building2, ShieldCheck } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { CONTACT_HREF } from "@/lib/contact";
 import SectionHeading from "./SectionHeading";
 
 const industries = [
@@ -34,62 +34,63 @@ const IndustrySolutions = () => {
   const current = industries[active];
 
   return (
-    <section className="bg-[#0B0F17] py-24 px-6 border-y border-[#1D2636]">
-      <div className="mx-auto max-w-5xl">
+    <section id="solutions" className="relative border-t border-line bg-ink-2 py-24 lg:py-32">
+      <div className="mx-auto max-w-6xl px-6">
         <SectionHeading
           align="left"
+          eyebrow="Solutions"
           title="Tailored intelligence for every premise"
           description="Generic cameras record crime. Rakshak AI understands your environment to prevent it."
         />
 
-        <div className="grid grid-cols-1 md:grid-cols-[0.9fr_1.1fr] gap-2 rounded-xl border border-[#1D2636] overflow-hidden">
-          {/* Tab list */}
-          <div className="flex md:flex-col border-b md:border-b-0 md:border-r border-[#1D2636] bg-[#05070B]">
-            {industries.map((item, idx) => (
-              <button
-                key={item.title}
-                onClick={() => setActive(idx)}
-                className={`flex-1 md:flex-none flex items-center gap-3 px-5 py-5 text-left text-sm font-medium transition-colors border-l-2 md:border-l-2 ${
-                  active === idx
-                    ? "text-[#EAF0F7] border-[#4FD8FF] bg-[#0B0F17]"
-                    : "text-[#8792A3] border-transparent hover:text-[#EAF0F7]"
-                }`}
-              >
-                <span className={active === idx ? "text-[#4FD8FF]" : "text-[#8792A3]"}>
-                  <item.Icon className="w-5 h-5" />
-                </span>
-                <span className="hidden sm:inline">{item.title}</span>
-              </button>
-            ))}
+        <div className="card overflow-hidden md:grid md:grid-cols-[0.8fr_1.2fr]">
+          <div
+            role="tablist"
+            aria-label="Industries"
+            className="flex border-b border-line md:flex-col md:border-b-0 md:border-r"
+          >
+            {industries.map((item, idx) => {
+              const selected = active === idx;
+              return (
+                <button
+                  key={item.title}
+                  role="tab"
+                  id={`tab-${idx}`}
+                  aria-selected={selected}
+                  aria-controls="industry-panel"
+                  onClick={() => setActive(idx)}
+                  className={`flex flex-1 items-center justify-center gap-3 border-b-2 px-4 py-5 text-left text-sm font-medium transition-colors md:flex-none md:justify-start md:border-b-0 md:border-l-2 md:px-6 ${
+                    selected
+                      ? "border-sky bg-white/[0.04] text-text"
+                      : "border-transparent text-mute hover:text-text"
+                  }`}
+                >
+                  <item.Icon size={20} className={selected ? "text-sky" : ""} />
+                  <span className="hidden sm:inline">{item.title}</span>
+                </button>
+              );
+            })}
           </div>
 
-          {/* Detail panel */}
-          <div className="relative p-8 md:p-10 bg-[#05070B] min-h-[260px]">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={active}
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -8 }}
-                transition={{ duration: 0.25 }}
-              >
-                <h3 className="text-xl font-semibold text-[#EAF0F7] mb-4">{current.title}</h3>
-                <p className="text-[#8792A3] leading-relaxed max-w-md mb-8">
-                  {current.description}
-                </p>
-                <div className="inline-flex items-center gap-2 rounded-full border border-[#1D2636] px-4 py-2 text-sm font-medium text-[#4FD8FF]">
-                  <ShieldCheck className="w-4 h-4" />
-                  {current.benefit}
-                </div>
-              </motion.div>
-            </AnimatePresence>
+          <div
+            id="industry-panel"
+            role="tabpanel"
+            aria-labelledby={`tab-${active}`}
+            className="min-h-[280px] p-8 md:p-10"
+          >
+            <h3 className="text-2xl font-semibold tracking-tight">{current.title}</h3>
+            <p className="mt-4 max-w-md leading-relaxed text-mute">{current.description}</p>
+            <div className="mt-8 inline-flex items-center gap-2 rounded-full border border-blue/30 bg-blue/10 px-4 py-2 text-sm font-medium text-sky">
+              <ShieldCheck size={16} />
+              {current.benefit}
+            </div>
           </div>
         </div>
 
-        <div className="mt-10 text-center md:text-left">
-          <button className="rounded-md bg-[#FF8A3D] px-7 py-3.5 text-sm font-semibold text-[#05070B] transition-colors hover:bg-[#FFA05E]">
+        <div className="mt-10">
+          <a href={CONTACT_HREF} className="btn btn-secondary">
             Get a custom solution for my business
-          </button>
+          </a>
         </div>
       </div>
     </section>

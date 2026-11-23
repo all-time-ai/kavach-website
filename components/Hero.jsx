@@ -7,7 +7,7 @@ import { ScanFace } from "lucide-react";
 const stats = [
   { value: "1.8s", label: "avg. response time" },
   { value: "99.2%", label: "detection accuracy" },
-  { value: "10,000+", label: "homes protected" },
+  // { value: "10,000+", label: "homes protected" },
 ];
 
 const Hero = () => {

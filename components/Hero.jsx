@@ -5,7 +5,7 @@ import { CONTACT_HREF } from "@/lib/contact";
 const stats = [
   { value: "1.8s", label: "Average response time" },
   { value: "99.2%", label: "Detection accuracy" },
-  { value: "10,000+", label: "Homes protected" },
+  // { value: "10,000+", label: "Homes protected" },
 ];
 
 const Hero = () => {
